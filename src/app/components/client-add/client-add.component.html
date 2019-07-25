@@ -1,0 +1,57 @@
+
+<div class="row my-3">
+    <div class="col-6">
+        <h1>New client</h1>
+    </div>
+    <div class="col-6 text-right">
+        <a routerLink="/clients" class="btn btn-link"><i class="fa fa-arrow-left"></i> Back to List</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 mx-auto">
+        
+        <form #f="ngForm">
+
+        <div class="form-group">
+            <label for="firstname">firstname</label>
+            <input name="firstName" required minlength="3" maxlength="8" pattern="[a-zA-Z ]*" #firstname="ngModel" ngModel id="firstname" placeholder="Client firstname" type="text" class="form-control">
+            <div 
+                class="alert alert-warning" 
+                *ngIf="firstname.touched && firstname.invalid"
+            >
+                <div *ngIf="firstname.errors.required">This field is Required !</div>
+                <div *ngIf="firstname.errors.minlength">This field should be great than 3 caracters!</div>
+                <div *ngIf="firstname.errors.pattern">This field is not respect the pattern ! </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname">lastname</label>
+            <input name="lastName" ngModel id="lastname" placeholder="Client lastname" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">email</label>
+            <input name="email" required email #email="ngModel" ngModel id="email" placeholder="Client email" type="text" class="form-control">
+            <div 
+            class="alert alert-warning" 
+            *ngIf="email.touched && email.invalid"
+        >
+            <div *ngIf="email.errors.required">This field is Required !</div>
+            <div *ngIf="email.errors.email">This field should be email format !</div>
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">phone</label>
+            <input name="phone" ngModel id="phone" placeholder="Client phone" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="balance">balance</label>
+            <input name="balance" ngModel id="balance" placeholder="Client balance" type="text" class="form-control">
+        </div>
+    
+        {{ myClient | json }}
+        <button [disabled]="f.invalid" (click)="addClient(f)" class="btn btn-block btn-primary">
+            <i class="fa fa-send"></i> Send
+        </button>
+    </form>
+    </div>
+</div>

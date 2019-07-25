@@ -1,0 +1,39 @@
+
+  <div class="row my-3">
+      <div class="col-6">
+          <h1>List of Clients</h1>
+      </div>
+      <div class="col-6 text-right">
+            <a routerLink="/clients/add" class="btn btn-sm btn-success">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients">
+                    <td scope="row">
+                        <h3>{{ client.firstName | titlecase }} {{ client.lastName | uppercase }}</h3>
+                        <em>{{ client.email }} - {{ client?.address }}</em>
+                    </td>
+                    <td>{{ client.phone }}</td>
+                    <td class="text-right" nowrap>
+                        <a [routerLink]="['/clients/edit', client.id]" class="btn btn-primary btn-sm mr-1"><i class="fa fa-pencil"></i></a>
+                        <button (click)="deleteClient(client.id)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+              
+            </tbody>
+        </table>
+    </div>
+</div>
